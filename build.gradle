@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE") {
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
+
+	compile("org.springframework.boot:spring-boot-starter-data-jpa:1+"){
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
+	
+	compile("com.vaadin:vaadin-spring-boot-starter:1+")
+	
+	compile("com.h2database:h2:1+")
+
+	compile("org.slf4j:slf4j-api:1.7.12")
+	compile("org.apache.logging.log4j:log4j:2.3")
+}
+
