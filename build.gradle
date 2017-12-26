@@ -1,5 +1,26 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url 'https://repo.spring.io/libs-snapshot' }
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '1.5.9.RELEASE'
+	id 'java'
+	id 'idea'
+}
+
+springBoot {
+	mainClass = 'com.example.Program'
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -8,20 +29,43 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	springBootVersion="1.5.9.RELEASE"
+	springVersion="4.3.13.RELEASE"
+	quartzVersion="2.3.0"
+
+}
+
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE") {
+	compile("org.springframework.boot:spring-boot-starter:${springBootVersion}") {
 		exclude group: 'commons-logging', module: 'commons-logging'
 	}
 
-	compile("org.springframework.boot:spring-boot-starter-data-jpa:1+"){
+	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
 		exclude group: 'commons-logging', module: 'commons-logging'
 	}
-	
-	compile("com.vaadin:vaadin-spring-boot-starter:1+")
+
+	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"){
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
+
+	compile("org.springframework:spring-core:${springVersion}")
+	compile("org.springframework:spring-context-support:${springVersion}")
+
+	compile("org.quartz-scheduler:quartz:${quartzVersion}")
+
+	compile("com.vaadin:vaadin-spring-boot-starter:1.2.0")
 	
 	compile("com.h2database:h2:1+")
 
+	compile("org.aspectj:aspectjweaver:1.8.8")
+	
 	compile("org.slf4j:slf4j-api:1.7.12")
 	compile("org.apache.logging.log4j:log4j:2.3")
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
 }
 

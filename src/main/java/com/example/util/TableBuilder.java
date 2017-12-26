@@ -1,15 +1,12 @@
-package com.example;
+package com.example.util;
 
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.StringToDoubleConverter;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DefaultFieldFactory;
 import com.vaadin.ui.Field;
@@ -55,6 +52,9 @@ public class TableBuilder {
 		
 	};
 	
+	public TableBuilder() {
+		this(null);
+	}
 	
 	public TableBuilder(Container.Indexed container) {
 		this.container = container;
